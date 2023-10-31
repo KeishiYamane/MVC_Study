@@ -48,14 +48,17 @@ namespace Model
                 case "鶏":
                     ret = "お肉";
                     break;
+                default:
+                    ret = "カテゴリ対象外";
+                    break;
             }
             CategoryUpdated(this,new CategoryUpdatedEventArgs(ret));
         }
     }
 
-    public class CategoryUpdatedEventArgs
+    public class CategoryUpdatedEventArgs: EventArgs
     {
-        public string category { get; set; }
+        public string category { get;  private set; }
 
         public CategoryUpdatedEventArgs(string category)
         {
