@@ -7,31 +7,6 @@ namespace Model
         // private static bool isRunning;
         public event EventHandler<CategoryUpdatedEventArgs> CategoryUpdated = delegate { };
 
-        static void Main(string[] args)
-        {
-            // Recevier();
-        }
-
-        //public static void Recevier()
-        //{
-        //    while (isRunning)
-        //    {
-        //        // 終了条件をチェック
-        //        if (false)
-        //        {
-        //            isRunning = false;
-        //        }
-
-        //        JudgeCategory();
-        //    }
-        //}
-
-
-        //public void Stop()
-        //{
-        //    isRunning = false;
-        //}
-
         public void JudgeCategory(string data)
         {
             string ret = string.Empty;
