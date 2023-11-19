@@ -26,6 +26,7 @@ namespace View
 
         private void button1_Click(object sender, EventArgs e)
         {
+            TcpClientManager.Connect("127.0.0.1","ABC");
             controlIF.JudgeCategory(comboBox1.SelectedItem.ToString());
         }
     }
