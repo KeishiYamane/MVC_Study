@@ -1,43 +1,54 @@
 ﻿using System;
+using System.Drawing;
 
 namespace Model
 {
     public class ModelControl
     {
         // private static bool isRunning;
-        public event EventHandler<CategoryUpdatedEventArgs> CategoryUpdated = delegate { };
+        public event EventHandler<ImgUpdatedEventArgs> ImgUpdated = delegate { };
 
-        public void JudgeCategory(string data)
+        public void JudgeColor(string data)
         {
-            string ret = string.Empty;
+            // 画像情報をセット
+            var imgInfo = new ImgInfo();
             switch (data)
             {
-                case "トマト":
-                    ret = "野菜";
+                case "赤":
+                    imgInfo.colorText = "red";
+                    imgInfo.color = Brushes.Red;
                     break;
 
-                case "リンゴ":
-                    ret = "くだもの";
+                case "青":
+                    imgInfo.colorText = "blue";
+                    imgInfo.color = Brushes.Blue;
                     break;
 
-                case "鶏":
-                    ret = "お肉";
+                case "黄":
+                    imgInfo.colorText = "yellow";
+                    imgInfo.color = Brushes.Yellow;
                     break;
                 default:
-                    ret = "カテゴリ対象外";
+                    imgInfo.colorText = "対象外";
                     break;
             }
-            CategoryUpdated(this,new CategoryUpdatedEventArgs(ret));
+            // 画像を作成
+            var imgManager = new ImgManager();
+            var bitmap = imgManager.CreateImage(imgInfo);
+
+            ImgUpdated(this,new ImgUpdatedEventArgs(data, bitmap));
         }
     }
 
-    public class CategoryUpdatedEventArgs: EventArgs
+    public class ImgUpdatedEventArgs : EventArgs
     {
         public string category { get;  private set; }
+        public Bitmap Bitmap { get; }
 
-        public CategoryUpdatedEventArgs(string category)
+        public ImgUpdatedEventArgs(string category, Bitmap bitmap)
         {
             this.category = category;
+            Bitmap = bitmap;
         }
     }
 }

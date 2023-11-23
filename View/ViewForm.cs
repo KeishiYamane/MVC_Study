@@ -16,18 +16,20 @@ namespace View
             model = new Model.ModelControl();
             controlIF = new ControllerInterface(model);
 
-            model.CategoryUpdated += Model_CategoryUpdated; 
+            model.ImgUpdated += Model_CategoryUpdated; 
         }
 
-        private void Model_CategoryUpdated(object sender, Model.CategoryUpdatedEventArgs e)
+        private void Model_CategoryUpdated(object sender, Model.ImgUpdatedEventArgs e)
         {
-            MessageBox.Show(this,e.category);
+            // MessageBox.Show(this,e.category);
+            using (pictureBox.Image){}
+            pictureBox.Image = e.Bitmap;
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             TcpClientManager.Connect("127.0.0.1","ABC");
-            controlIF.JudgeCategory(comboBox1.SelectedItem.ToString());
+            controlIF.JudgeColor(comboBox1.SelectedItem.ToString());
         }
     }
 }

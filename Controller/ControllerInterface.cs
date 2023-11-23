@@ -11,9 +11,9 @@ namespace Controller
             _model = model;
         }
 
-        public void JudgeCategory(string selectedValue)
+        public void JudgeColor(string selectedValue)
         {
-            _model.JudgeCategory(selectedValue);
+            _model.JudgeColor(selectedValue);
         }
     }
 }
