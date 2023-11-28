@@ -9,17 +9,17 @@ namespace View
 {
     public class TcpClientManager
     {
-        public static void Connect(String server, String message)
+        public static void TcpConnect(String server, String message)
         {
             try
             {
                 Int32 port = 13000;
 
-                // Prefer a using declaration to ensure the instance is Disposed later.
+                // サーバーと接続
                 using (TcpClient client = new TcpClient(server, port))
                 {
                     // Translate the passed message into ASCII and store it as a Byte array.
-                    Byte[] data = System.Text.Encoding.ASCII.GetBytes(message);
+                    Byte[] data = System.Text.Encoding.UTF8.GetBytes(message);
 
                     // Get a client stream for reading and writing.
                     NetworkStream stream = client.GetStream();

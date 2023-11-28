@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace View
 {
@@ -16,6 +17,8 @@ namespace View
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Thread.Sleep(3000);
+            TcpClientManager.TcpConnect("127.0.0.1", "接続開始");
             Application.Run(new ViewForm());
         }
     }
